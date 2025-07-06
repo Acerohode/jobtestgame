@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxrqe050bchps"]
+
+[ext_resource type="Script" uid="uid://dxmlh8fuikl0o" path="res://projectile.gd" id="1_ewmjy"]
+[ext_resource type="Texture2D" uid="uid://dfx8fro7lbskq" path="res://Assets/PlayerSprite/Projectile.png" id="2_qnyyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4467"]
+size = Vector2(360, 62)
+
+[node name="Projectile" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ewmjy")
+
+[node name="Bullet_hit_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet_hit_area"]
+shape = SubResource("RectangleShape2D_d4467")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qnyyu")
+
+[node name="PhysCollisionCast" type="RayCast2D" parent="."]
+position = Vector2(77, 1)
+target_position = Vector2(100, 0)
+collision_mask = 16
