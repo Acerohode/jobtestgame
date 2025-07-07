@@ -5,6 +5,7 @@ extends CharState
 @export var patrol_state : CharState
 @onready var attack_timer = $AttackTimer
 @onready var attack_alarm = $"../../Body/Sprites/AttackAlarm"
+@onready var alarm_sfx = %AlarmSFX
 
 
 
@@ -18,3 +19,4 @@ func on_exit():
 	var tween = create_tween().set_parallel()
 	tween.tween_property(attack_alarm,"self_modulate:a",0,0.1)
 	tween.tween_property(attack_alarm,"position.y",30,0.1)
+	alarm_sfx.stop()

@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5jp1fgm8t18x"]
+
+[ext_resource type="Script" uid="uid://rj3iur62n1n2" path="res://Scenes/explosion.gd" id="1_4okmj"]
+[ext_resource type="Texture2D" uid="uid://etbk6kh1xyke" path="res://Assets/PlayerSprite/spritesheet (5).png" id="1_aayv4"]
+[ext_resource type="AudioStream" uid="uid://bol5i3sbk8ym4" path="res://Assets/Audio/Boom.wav" id="3_k2xjm"]
+
+[sub_resource type="Animation" id="Animation_4okmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_a801j"]
+resource_name = "explode"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2xjm"]
+_data = {
+&"RESET": SubResource("Animation_4okmj"),
+&"explode": SubResource("Animation_a801j")
+}
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_4okmj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_k2xjm")
+}
+autoplay = "explode"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aayv4")
+hframes = 17
+
+[node name="ExplodeSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_k2xjm")
+autoplay = true
+bus = &"SFX"

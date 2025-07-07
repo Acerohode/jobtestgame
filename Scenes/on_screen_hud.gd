@@ -16,6 +16,7 @@ func _ready():
 
 func update_health():
 	current_health -= 1
+	current_health = clampi(current_health,0,10)
 	health_label.text = "Health: " + str(current_health)
 	if current_health < 1:
 		SignalBus.player_dead.emit()

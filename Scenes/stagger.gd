@@ -3,9 +3,11 @@ extends CharState
 @export var die_state : CharState
 @export var patrol_state : CharState
 var health : int = 3
+@onready var stagger_sfx = $"../../Body/StaggerSFX"
 
 
 func on_enter():
+	stagger_sfx.play()
 	health -= 1
 	if health <1:
 		next_state = die_state

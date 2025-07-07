@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://08j0bpdclklp"]
+[gd_scene load_steps=26 format=3 uid="uid://08j0bpdclklp"]
 
 [ext_resource type="Script" uid="uid://c8fj5ecdk7x2c" path="res://Scenes/Actors/Characters/Enemy1/enemy.gd" id="1_0y3s5"]
 [ext_resource type="Script" uid="uid://bpihtslkqrqml" path="res://Code/enemy_state_machine.gd" id="2_2qla8"]
@@ -7,13 +7,16 @@
 [ext_resource type="Script" uid="uid://y33os0txvjtp" path="res://Scenes/Actors/Characters/Enemy1/attack.gd" id="5_nrpls"]
 [ext_resource type="Script" uid="uid://dvm18uibi2tm4" path="res://Scenes/stagger.gd" id="6_c6tra"]
 [ext_resource type="Script" uid="uid://b728klf4lpiko" path="res://Scenes/Actors/Characters/Enemy1/die.gd" id="7_wgtd6"]
-[ext_resource type="Texture2D" uid="uid://cf1cn0u4hc5xa" path="res://Assets/PlayerSprite/Blade.png" id="9_ja8eu"]
 [ext_resource type="Script" uid="uid://b5rkq6f5rrtpc" path="res://Scenes/Actors/Characters/Enemy1/enemy_hitbox.gd" id="10_650dw"]
 [ext_resource type="Texture2D" uid="uid://de6lg18hgfp6b" path="res://Assets/PlayerSprite/EnemyAttackwarn.png" id="10_fbj0r"]
 [ext_resource type="Script" uid="uid://c0tb2k7xxyynq" path="res://Scenes/Actors/Characters/Enemy1/enemy_hurtbox.gd" id="11_qnh2u"]
 [ext_resource type="Texture2D" uid="uid://dhoc5kcfassjp" path="res://Assets/PlayerSprite/EnemyLeg.png" id="12_nrpls"]
 [ext_resource type="Texture2D" uid="uid://4ahudvng3pvb" path="res://Assets/PlayerSprite/EnemyAlarm.png" id="13_c6tra"]
+[ext_resource type="AudioStream" uid="uid://ltwnwp2a6rli" path="res://Assets/Audio/EnemyStep.wav" id="14_rbpmf"]
 [ext_resource type="Texture2D" uid="uid://c0nv67ul4qijp" path="res://Assets/PlayerSprite/EnemyBody.png" id="14_wgtd6"]
+[ext_resource type="AudioStream" uid="uid://d7sr108hj8o0" path="res://Assets/Audio/EnemyAlarm.wav" id="15_ja8eu"]
+[ext_resource type="AudioStream" uid="uid://xpw2o15iln6u" path="res://Assets/Audio/EnemyHit.wav" id="16_650dw"]
+[ext_resource type="AudioStream" uid="uid://bebya24tp657d" path="res://Assets/Audio/EnemyStagger.wav" id="17_qnh2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iacmt"]
 size = Vector2(235.333, 185.333)
@@ -211,6 +214,23 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -16), Vector2(0, 0), Vector2(0, -16), Vector2(0, 0)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"steppy"
+}, {
+"args": [],
+"method": &"steppy"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5oxhp"]
 _data = {
@@ -280,10 +300,17 @@ target_position = Vector2(0, 109.1)
 hit_from_inside = true
 collide_with_areas = true
 
+[node name="WallDetectCast" type="RayCast2D" parent="Body"]
+position = Vector2(101.021, 0)
+target_position = Vector2(22.24, 0)
+hit_from_inside = true
+collide_with_areas = true
+
 [node name="Sprites" type="Node2D" parent="Body"]
 
 [node name="AttackArea" type="Sprite2D" parent="Body/Sprites"]
 self_modulate = Color(1, 1, 1, 0)
+z_index = -1
 texture = ExtResource("10_fbj0r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Sprites"]
@@ -293,13 +320,6 @@ libraries = {
 }
 autoplay = "Walk"
 speed_scale = 0.7
-
-[node name="BladeSprite" type="Sprite2D" parent="Body/Sprites"]
-modulate = Color(3.94672e-06, 0.67628, 0.79559, 1)
-position = Vector2(1.33333, 2.33333)
-rotation = 6.28319
-texture = ExtResource("9_ja8eu")
-offset = Vector2(20, 1)
 
 [node name="FootL" type="Sprite2D" parent="Body/Sprites"]
 position = Vector2(-38, -7)
@@ -329,7 +349,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/EnemyAttackArea"]
 position = Vector2(0, -153.305)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fbj0r")
 debug_color = Color(1, 0.313788, 0.411285, 0.42)
 
@@ -351,3 +370,23 @@ script = ExtResource("11_qnh2u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/EnemyHurtbox"]
 shape = SubResource("CircleShape2D_nt2eh")
+
+[node name="StepSFX" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource("14_rbpmf")
+volume_db = -8.0
+pitch_scale = 1.5
+attenuation = 12.996
+bus = &"SFX"
+
+[node name="AlarmSFX" type="AudioStreamPlayer2D" parent="Body"]
+unique_name_in_owner = true
+stream = ExtResource("15_ja8eu")
+bus = &"SFX"
+
+[node name="AttackSFX" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource("16_650dw")
+bus = &"SFX"
+
+[node name="StaggerSFX" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource("17_qnh2u")
+bus = &"SFX"

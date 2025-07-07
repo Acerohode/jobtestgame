@@ -1,4 +1,5 @@
 extends CharState
+@onready var wall_detect_cast = $"../../Body/WallDetectCast"
 
 @onready var edge_detect_cast = $"../../Body/EdgeDetectCast"
 @export var chase_state : CharState
@@ -15,9 +16,9 @@ func on_enter():
 
 func state_process(delta):
 	character.velocity.x = patrol_speed * character.patrol_direction
-	if not edge_detect_cast.is_colliding():
+	if not edge_detect_cast.is_colliding() or wall_detect_cast.is_colliding():
 		character.patrol_direction = character.patrol_direction *-1
 		character.flip()
 	character.move_and_slide()
-	if character.global_position.distance_squared_to(player.global_position) < 90000:
+	if character.global_position.distance_squared_to(player.global_position) < 90000 && not player.dead:
 		next_state = chase_state

@@ -7,6 +7,7 @@ var direction_mod : float = 1
 @export var attack_state : CharState
 @onready var attack_timer = $"../Attack/AttackTimer"
 @onready var attack_alarm = $"../../Body/Sprites/AttackAlarm"
+@onready var alarm_sfx = %AlarmSFX
 
 func _ready():
 	enemy_attack_area.connect("area_entered",attack)
@@ -20,7 +21,7 @@ func on_enter():
 	var tween = create_tween().set_parallel()
 	tween.tween_property(attack_alarm,"self_modulate:a",1,0.1)
 	tween.tween_property(attack_alarm,"position.y",-130,0.1)
-		
+	alarm_sfx.play()
 
 
 
@@ -41,7 +42,8 @@ func state_process(delta):
 		#character.flip()
 		#direction_mod = direction_mod * -1
 	#character.patrol_direction = sign(character.global_position.direction_to(player.global_position).x) * direction_mod
-	if character.global_position.distance_squared_to(player.global_position) > 120000:
+	if character.global_position.distance_squared_to(player.global_position) > 120000 or player.dead:
+		alarm_sfx.stop()
 		next_state = patrol_state
 		var tween = create_tween().set_parallel()
 		tween.tween_property(attack_alarm,"self_modulate:a",0,0.1)

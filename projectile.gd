@@ -1,7 +1,7 @@
 extends Node2D
 @onready var bullet_hit_area = $Bullet_hit_area
 var direction : float = 1.0
-var speed = 10
+var speed = 15
 @onready var phys_collision_cast = $PhysCollisionCast
 
 func _ready():

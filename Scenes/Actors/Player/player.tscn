@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://sedt727jo7ty"]
+[gd_scene load_steps=35 format=3 uid="uid://sedt727jo7ty"]
 
 [ext_resource type="Script" uid="uid://gmogrdum5vuk" path="res://Scenes/Actors/Player/player.gd" id="1_ymntf"]
 [ext_resource type="Script" uid="uid://c222ehdl73nww" path="res://Code/player_state_machine.gd" id="2_qw7s3"]
@@ -12,9 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://cf1cn0u4hc5xa" path="res://Assets/PlayerSprite/Blade.png" id="9_wt3o3"]
 [ext_resource type="Script" uid="uid://brssoc1a1vimj" path="res://Scenes/Actors/Player/player_hurtbox.gd" id="10_hknbh"]
 [ext_resource type="Texture2D" uid="uid://x5bs8fkcr3hr" path="res://Assets/PlayerSprite/PlayerGun.png" id="10_skrgf"]
+[ext_resource type="AudioStream" uid="uid://b1m0hq332qup3" path="res://Assets/Audio/Step.wav" id="11_hknbh"]
 [ext_resource type="Script" uid="uid://bchguek13rp4q" path="res://Scenes/Actors/Player/player_hitbox.gd" id="11_twc3u"]
 [ext_resource type="Texture2D" uid="uid://cq1qmke2w8yky" path="res://Assets/PlayerSprite/PlayerTorso.png" id="11_wt3o3"]
 [ext_resource type="Texture2D" uid="uid://bbd45jemfw1xy" path="res://Assets/PlayerSprite/PlayerHand.png" id="12_hknbh"]
+[ext_resource type="AudioStream" uid="uid://b6hbw3co70bg5" path="res://Assets/Audio/Punch.wav" id="12_twc3u"]
+[ext_resource type="AudioStream" uid="uid://bgnejj36jg8ek" path="res://Assets/Audio/Open.wav" id="13_vi6v4"]
+[ext_resource type="AudioStream" uid="uid://bi8xt2auytkwm" path="res://Assets/Audio/Close.wav" id="14_jrtkm"]
+[ext_resource type="AudioStream" uid="uid://baepkltfndtf4" path="res://Assets/Audio/Fire.wav" id="15_0g4o1"]
+[ext_resource type="AudioStream" uid="uid://by3hxsj20k08b" path="res://Assets/Audio/Reload.wav" id="16_twc3u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6ack"]
 size = Vector2(182, 184.5)
@@ -156,6 +162,23 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(36, 88), Vector2(36, 88), Vector2(-32, 88)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"steppy"
+}, {
+"args": [],
+"method": &"steppy"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lhp3t"]
 _data = {
@@ -251,6 +274,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(10, 0), Vector2(10, 82)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../OpenSFX:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../CloseSFX:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_wi57c"]
 resource_name = "Aim_Attack"
@@ -304,6 +351,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(10, 0), Vector2(15, 0), Vector2(10, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../FireSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_c1lv6"]
@@ -406,6 +465,30 @@ tracks/7/keys = {
 "args": [],
 "method": &"on_exit"
 }]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../OpenSFX:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../CloseSFX:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_oyb3p"]
@@ -520,6 +603,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(-1, 1), Vector2(-1, 1), Vector2(-1, 2), Vector2(-1, 2), Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../MeleeSFX:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jvnna"]
@@ -680,6 +775,54 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../OpenSFX:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../CloseSFX:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../FireSFX:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../MeleeSFX:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b48ew"]
 _data = {
@@ -702,6 +845,11 @@ shape = SubResource("RectangleShape2D_x6ack")
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="Body"]
+limit_left = -212
+limit_top = -1000
+limit_right = 2950
+limit_bottom = 862
+limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -794,6 +942,33 @@ libraries = {
 &"": SubResource("AnimationLibrary_b48ew")
 }
 
+[node name="StepSFX" type="AudioStreamPlayer2D" parent="Body"]
+position = Vector2(2.5, 135)
+stream = ExtResource("11_hknbh")
+bus = &"SFX"
+
+[node name="MeleeSFX" type="AudioStreamPlayer2D" parent="Body"]
+position = Vector2(130, -57.5)
+stream = ExtResource("12_twc3u")
+bus = &"SFX"
+
+[node name="OpenSFX" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource("13_vi6v4")
+bus = &"SFX"
+
+[node name="CloseSFX" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource("14_jrtkm")
+bus = &"SFX"
+
+[node name="FireSFX" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource("15_0g4o1")
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="ReloadSFX" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource("16_twc3u")
+bus = &"SFX"
+
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("animation_player", "character", "current_state")]
 script = ExtResource("2_qw7s3")
 animation_player = NodePath("../Body/Sprites/AnimationPlayerMain")
@@ -815,5 +990,13 @@ script = ExtResource("5_c1lv6")
 general_state = NodePath("../General")
 cant_move = true
 
+[node name="ReloadTimer" type="Timer" parent="PlayerStateMachine/Aim"]
+one_shot = true
+
 [node name="Die" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_vf5d4")
+cant_move = true
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
