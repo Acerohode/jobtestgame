@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://e13bcx1kkhab" path="res://Assets/PlayerSprite/PlayerLeg.png" id="7_c1lv6"]
 [ext_resource type="Texture2D" uid="uid://dc1sv6h6adg7b" path="res://Assets/PlayerSprite/PlayerInternals.png" id="8_vf5d4"]
 [ext_resource type="Texture2D" uid="uid://ckk3yoatwapcb" path="res://Assets/PlayerSprite/PlayerHead.png" id="9_wi57c"]
-[ext_resource type="Texture2D" uid="uid://cf1cn0u4hc5xa" path="res://Assets/PlayerSprite/Blade.png" id="9_wt3o3"]
 [ext_resource type="Script" uid="uid://brssoc1a1vimj" path="res://Scenes/Actors/Characters/Player/player_hurtbox.gd" id="10_hknbh"]
 [ext_resource type="Texture2D" uid="uid://x5bs8fkcr3hr" path="res://Assets/PlayerSprite/PlayerGun.png" id="10_skrgf"]
 [ext_resource type="AudioStream" uid="uid://b1m0hq332qup3" path="res://Assets/Audio/Step.wav" id="11_hknbh"]
@@ -30,6 +29,8 @@ size = Vector2(180, 328)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ebs2"]
 size = Vector2(184, 287)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aiv0w"]
 
 [sub_resource type="Animation" id="Animation_vf5d4"]
 resource_name = "InAir"
@@ -929,7 +930,7 @@ offset = Vector2(-62, 45)
 [node name="Blade" type="Sprite2D" parent="Body/Sprites/Core"]
 visible = false
 position = Vector2(39, 10.75)
-texture = ExtResource("9_wt3o3")
+texture = SubResource("CompressedTexture2D_aiv0w")
 
 [node name="WalkAnim" type="AnimationPlayer" parent="Body/Sprites"]
 libraries = {

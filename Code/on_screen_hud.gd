@@ -10,7 +10,7 @@ func _ready():
 	SignalBus.connect("player_damage",update_health)
 	SignalBus.connect("enemy_killed",update_score)
 	health_label.text = "Health: " + str(current_health)
-	score_label.text = "Enemies_defeated: " + str(score)
+	score_label.text = "Enemies defeated: " + str(score)
 
 
 func update_health():

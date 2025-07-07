@@ -1,9 +1,7 @@
-[gd_scene load_steps=33 format=4 uid="uid://bd8ra2nt7necq"]
+[gd_scene load_steps=32 format=4 uid="uid://bd8ra2nt7necq"]
 
 [ext_resource type="Texture2D" uid="uid://dgyvtc221y16t" path="res://Assets/kenney_pixel-platformer-blocks/Tilemap/rock.png" id="1_52fb6"]
-[ext_resource type="Texture2D" uid="uid://bny5epanqa6vp" path="res://Assets/spritesheet (7).png" id="1_m1efj"]
 [ext_resource type="PackedScene" uid="uid://sedt727jo7ty" path="res://Scenes/Actors/Characters/Player/player.tscn" id="2_psl12"]
-[ext_resource type="Texture2D" uid="uid://cm6n5eunen3if" path="res://Assets/kenney_pixel-platformer-blocks/Tilemap/Oliva-8IN-Chefs-V.webp" id="3_8edxt"]
 [ext_resource type="Script" uid="uid://bp0gygxeur605" path="res://Code/on_screen_hud.gd" id="3_b48ew"]
 [ext_resource type="Script" uid="uid://bmmioqgraguy4" path="res://Code/control.gd" id="4_5cm5d"]
 [ext_resource type="Texture2D" uid="uid://dpp3aauip1euk" path="res://Assets/kenney_pixel-platformer-blocks/Tilemap/pngimg.com - mercedes_PNG80135.png" id="4_5oxhp"]
@@ -18,6 +16,7 @@
 [ext_resource type="Script" uid="uid://dkxch02522la8" path="res://Code/pause_menu.gd" id="9_mai8y"]
 [ext_resource type="Texture2D" uid="uid://cnyhue7ee42ll" path="res://Assets/kenney_pixel-platformer-blocks/Tilemap/pngtree-mini-fridge-png-image_13802624.png" id="9_s8qe6"]
 [ext_resource type="Script" uid="uid://cgp2fjjmb35bx" path="res://Code/audio_slider.gd" id="10_76v2p"]
+[ext_resource type="Texture2D" uid="uid://cujfifherj7sp" path="res://Assets/spritesheet (7) (Large).png" id="12_8edxt"]
 [ext_resource type="Script" uid="uid://jkywxoakjfxk" path="res://Code/Cheer.gd" id="12_lhp3t"]
 [ext_resource type="Texture2D" uid="uid://cebnv3ioxe8db" path="res://Assets/PlayerSprite/Clapping-Hands-PNG-Photo.webp" id="13_gnsmo"]
 [ext_resource type="AudioStream" uid="uid://dk3kno4sagp7f" path="res://Assets/Audio/Cheer.wav" id="14_psl12"]
@@ -378,61 +377,64 @@ scale = Vector2(0.25, 0.25)
 position = Vector2(248.5, 183.75)
 rotation = 1.54764
 scale = Vector2(0.327687, 0.366624)
-texture = ExtResource("3_8edxt")
 
 [node name="Oliva-8in-chefs-v2" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(666, 190.5)
 rotation = 1.54764
 scale = Vector2(0.159976, 0.157939)
-texture = ExtResource("3_8edxt")
 
 [node name="Pngimg_com-MercedesPng80135" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(142.727, 82.1563)
-scale = Vector2(0.0302592, 0.011065)
+scale = Vector2(0.225, 0.082)
 texture = ExtResource("4_5oxhp")
 
 [node name="Pngimg_com-MercedesPng80136" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(465.25, 104.75)
 rotation = -3.14159
-scale = Vector2(0.0302592, 0.011065)
+scale = Vector2(0.29, 0.106)
 texture = ExtResource("4_5oxhp")
 
 [node name="Pngimg_com-MercedesPng80137" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(582.168, 139.464)
 rotation = -3.14159
-scale = Vector2(0.0151561, 0.0105184)
+scale = Vector2(0.13, 0.095)
 texture = ExtResource("4_5oxhp")
 
 [node name="Pngimg_com-MercedesPng80138" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(348.25, 27.75)
 rotation = -4.71238
-scale = Vector2(0.0116585, 0.132343)
+scale = Vector2(0.072, 0.792)
 texture = ExtResource("4_5oxhp")
 
 [node name="Pngimg_com-PhonePng49049" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(11.5, 143.75)
-scale = Vector2(0.0854664, 0.0820771)
+scale = Vector2(0.335, 0.323)
 texture = ExtResource("5_nt2eh")
 
 [node name="Pngimg_com-PhonePng49050" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(633, 26.75)
 rotation = 1.5075
-scale = Vector2(0.0164846, 0.0550876)
+scale = Vector2(0.056, 0.192)
 texture = ExtResource("5_nt2eh")
 
 [node name="Pngimg_com-PlanePng101217" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(404.75, -233)
-scale = Vector2(0.433374, 0.0774707)
+scale = Vector2(1.858, 0.33)
 texture = ExtResource("6_5cm5d")
 
 [node name="Pngimg_com-PlanePng101218" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(713.361, 0.325668)
 rotation = 1.57079
-scale = Vector2(0.164076, 0.0521117)
+scale = Vector2(1.014, 0.322)
 texture = ExtResource("6_5cm5d")
 
 [node name="Pngtree-classic-vintage-tv-clipart-old-school-television-png-image15793935" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(103.625, -17.9375)
+scale = Vector2(1.09514, 0.19757)
+texture = ExtResource("7_5bov3")
+
+[node name="Pngtree-classic-vintage-tv-clipart-old-school-television-png-image15793937" type="Sprite2D" parent="TileMapLayer"]
+position = Vector2(375.25, 167)
 scale = Vector2(1.09514, 0.19757)
 texture = ExtResource("7_5bov3")
 
@@ -454,9 +456,15 @@ scale = Vector2(0.1336, 0.32966)
 texture = ExtResource("9_s8qe6")
 
 [node name="Pngtree-mini-fridge-png-image13802625" type="Sprite2D" parent="TileMapLayer"]
-position = Vector2(548, 32.75)
+position = Vector2(548, 29)
 rotation = 1.58452
 scale = Vector2(0.1336, 0.32966)
+texture = ExtResource("9_s8qe6")
+
+[node name="Pngtree-mini-fridge-png-image13802626" type="Sprite2D" parent="TileMapLayer"]
+position = Vector2(133, 184.25)
+rotation = 1.58452
+scale = Vector2(0.314, 0.773)
 texture = ExtResource("9_s8qe6")
 
 [node name="Player" parent="." instance=ExtResource("2_psl12")]
@@ -478,8 +486,8 @@ layer = -10
 [node name="Background" type="Sprite2D" parent="CanvasLayer2"]
 z_index = -10
 position = Vector2(584, 324)
-scale = Vector2(2.37551, 2)
-texture = ExtResource("1_m1efj")
+scale = Vector2(6.331, 5.329)
+texture = ExtResource("12_8edxt")
 hframes = 10
 vframes = 7
 

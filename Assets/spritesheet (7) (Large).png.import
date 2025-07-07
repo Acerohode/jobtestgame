@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm6n5eunen3if"
-valid=false
+uid="uid://cujfifherj7sp"
+path="res://.godot/imported/spritesheet (7) (Large).png-6dbd127c7d0e160e236424b0af678d82.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/kenney_pixel-platformer-blocks/Tilemap/Oliva-8IN-Chefs-V.webp"
+source_file="res://Assets/spritesheet (7) (Large).png"
+dest_files=["res://.godot/imported/spritesheet (7) (Large).png-6dbd127c7d0e160e236424b0af678d82.ctex"]
 
 [params]
 

@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://b728klf4lpiko" path="res://Scenes/Actors/Characters/Enemy1/die.gd" id="7_wgtd6"]
 [ext_resource type="Script" uid="uid://b5rkq6f5rrtpc" path="res://Scenes/Actors/Characters/Enemy1/enemy_hitbox.gd" id="10_650dw"]
 [ext_resource type="Texture2D" uid="uid://de6lg18hgfp6b" path="res://Assets/PlayerSprite/EnemyAttackwarn.png" id="10_fbj0r"]
+[ext_resource type="Texture2D" uid="uid://bs7v4r5sfmgjo" path="res://Assets/PlayerSprite/EnemyAlarm.png" id="10_wgtd6"]
 [ext_resource type="Script" uid="uid://c0tb2k7xxyynq" path="res://Scenes/Actors/Characters/Enemy1/enemy_hurtbox.gd" id="11_qnh2u"]
 [ext_resource type="Texture2D" uid="uid://dhoc5kcfassjp" path="res://Assets/PlayerSprite/EnemyLeg.png" id="12_nrpls"]
-[ext_resource type="Texture2D" uid="uid://4ahudvng3pvb" path="res://Assets/PlayerSprite/EnemyAlarm.png" id="13_c6tra"]
 [ext_resource type="AudioStream" uid="uid://ltwnwp2a6rli" path="res://Assets/Audio/EnemyStep.wav" id="14_rbpmf"]
 [ext_resource type="Texture2D" uid="uid://c0nv67ul4qijp" path="res://Assets/PlayerSprite/EnemyBody.png" id="14_wgtd6"]
 [ext_resource type="AudioStream" uid="uid://d7sr108hj8o0" path="res://Assets/Audio/EnemyAlarm.wav" id="15_ja8eu"]
@@ -359,7 +359,7 @@ offset = Vector2(-45, -32)
 [node name="AttackAlarm" type="Sprite2D" parent="Body/Sprites"]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -55.805)
-texture = ExtResource("13_c6tra")
+texture = ExtResource("10_wgtd6")
 
 [node name="BodySprite" type="Sprite2D" parent="Body/Sprites"]
 texture = ExtResource("14_wgtd6")
