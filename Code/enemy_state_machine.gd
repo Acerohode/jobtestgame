@@ -8,7 +8,6 @@ class_name CreatureStateMachine
 @export var animation_player : AnimationPlayer
 
 var states: Array[CharState]
-
 var char_cant_move : bool
 
 

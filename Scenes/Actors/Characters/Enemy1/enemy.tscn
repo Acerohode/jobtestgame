@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://djnfp3nkgdq3n" path="res://Scenes/Actors/Characters/Enemy1/patrol.gd" id="3_ddyp0"]
 [ext_resource type="Script" uid="uid://b8uiw24xfef2t" path="res://Scenes/Actors/Characters/Enemy1/chase.gd" id="4_fbj0r"]
 [ext_resource type="Script" uid="uid://y33os0txvjtp" path="res://Scenes/Actors/Characters/Enemy1/attack.gd" id="5_nrpls"]
-[ext_resource type="Script" uid="uid://dvm18uibi2tm4" path="res://Scenes/stagger.gd" id="6_c6tra"]
+[ext_resource type="Script" uid="uid://dvm18uibi2tm4" path="res://Scenes/Actors/Characters/Enemy1/stagger.gd" id="6_c6tra"]
 [ext_resource type="Script" uid="uid://b728klf4lpiko" path="res://Scenes/Actors/Characters/Enemy1/die.gd" id="7_wgtd6"]
 [ext_resource type="Script" uid="uid://b5rkq6f5rrtpc" path="res://Scenes/Actors/Characters/Enemy1/enemy_hitbox.gd" id="10_650dw"]
 [ext_resource type="Texture2D" uid="uid://de6lg18hgfp6b" path="res://Assets/PlayerSprite/EnemyAttackwarn.png" id="10_fbj0r"]
@@ -61,6 +61,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.392157), Color(1, 0.32, 0.32, 0.588235), Color(1, 0.32, 0.32, 0.588235), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_8edxt"]
@@ -148,6 +160,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AttackSFX:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_rbpmf"]
@@ -264,10 +288,10 @@ current_state = NodePath("Patrol")
 character = NodePath("..")
 animation_player = NodePath("../Body/Sprites/AnimationPlayer")
 
-[node name="Patrol" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("chase_state", "attack_state")]
+[node name="Patrol" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("attack_state", "chase_state")]
 script = ExtResource("3_ddyp0")
-chase_state = NodePath("../Chase")
 attack_state = NodePath("../Attack")
+chase_state = NodePath("../Chase")
 cant_move = false
 
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("patrol_state", "attack_state")]
@@ -385,6 +409,7 @@ bus = &"SFX"
 
 [node name="AttackSFX" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource("16_650dw")
+volume_db = 5.0
 bus = &"SFX"
 
 [node name="StaggerSFX" type="AudioStreamPlayer2D" parent="Body"]

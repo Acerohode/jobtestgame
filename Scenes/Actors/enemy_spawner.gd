@@ -1,7 +1,11 @@
 extends Node2D
-const ENEMY = preload("res://Scenes/Actors/Characters/Enemy1/enemy.tscn")
-var dead : bool = true
+
 @onready var visibility_indicator = $Visibility_indicator
+
+const ENEMY = preload("res://Scenes/Actors/Characters/Enemy1/enemy.tscn")
+
+var dead : bool = true
+
 
 func _ready():
 	spawn_enemy()

@@ -1,16 +1,20 @@
 extends CharacterBody2D
 
-var direction : float = 1.0
+
+@onready var step_sfx = $Body/StepSFX
 @onready var enemy_state_machine = $EnemyStateMachine
+@onready var edge_detect_cast = $Body/EdgeDetectCast
+@onready var body = $Body
+
+const EXPLOSION = preload("res://Scenes/explosion.tscn")
+
+var direction : float = 1.0
 var chase_logic : bool = false
 var speed : float = 100.0
 var player : CharacterBody2D
-@onready var edge_detect_cast = $Body/EdgeDetectCast
-@onready var body = $Body
-const EXPLOSION = preload("res://Scenes/explosion.tscn")
 var patrol_direction : int = 1
+
 signal died()
-@onready var step_sfx = $Body/StepSFX
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")

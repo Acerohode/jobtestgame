@@ -1,13 +1,16 @@
 extends CharState
-@onready var edge_detect_cast = $"../../Body/EdgeDetectCast"
-var chase_speed : float = 100
-var direction_mod : float = 1
+
 @export var patrol_state : CharState
-@onready var enemy_attack_area = %EnemyAttackArea
 @export var attack_state : CharState
+
+@onready var edge_detect_cast = $"../../Body/EdgeDetectCast"
+@onready var enemy_attack_area = %EnemyAttackArea
 @onready var attack_timer = $"../Attack/AttackTimer"
 @onready var attack_alarm = $"../../Body/Sprites/AttackAlarm"
 @onready var alarm_sfx = %AlarmSFX
+
+var chase_speed : float = 100
+var direction_mod : float = 1
 
 func _ready():
 	enemy_attack_area.connect("area_entered",attack)

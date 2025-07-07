@@ -1,12 +1,13 @@
 extends CharState
-@onready var wall_detect_cast = $"../../Body/WallDetectCast"
 
-@onready var edge_detect_cast = $"../../Body/EdgeDetectCast"
+
+@export var attack_state : CharState
 @export var chase_state : CharState
 
-var patrol_speed  : float = 60
-@export var attack_state : CharState
+@onready var wall_detect_cast = $"../../Body/WallDetectCast"
+@onready var edge_detect_cast = $"../../Body/EdgeDetectCast"
 
+var patrol_speed  : float = 60
 
 func on_enter():
 	playback.speed_scale = 0.7

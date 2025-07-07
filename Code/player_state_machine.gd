@@ -1,10 +1,10 @@
 extends Node
 class_name PlayerStateMachine
 
-
 @export var animation_player: AnimationPlayer
 @export var character : CharacterBody2D
 @export var current_state : PlayerState
+
 var states: Array[PlayerState]
 
 
